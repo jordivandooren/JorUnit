@@ -7,6 +7,7 @@ class TestChecker {
     public static void testCheckTrue() {
         Checker check = new Checker();
         check.isTrue(true);
+        check.isTrue(false);
     }
 }    
 
