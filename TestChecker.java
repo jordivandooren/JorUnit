@@ -1,11 +1,11 @@
 class TestChecker {
 
     public static void main(String[] args) {
-        testCheckTrue();
+        testCheckTruth();
         testEquality();
     }
     
-    public static void testCheckTrue() {
+    public static void testTruth() {
         Checker check = new Checker();
         check.isTrue(true);
         check.isTrue(false);
