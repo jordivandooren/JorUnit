@@ -1,6 +1,10 @@
 class TestPrototype {
     public static void main(String[] args) {
-        WasRun test = new WasRun();
+        testPrototypeTestMethod();
+    }
+
+    static void testPrototypeTestMethod() {
+        Prototype test = new Prototype();
         System.out.println(test.wasRun);
         test.testMethod();
         System.out.println(test.wasRun);
@@ -8,10 +12,10 @@ class TestPrototype {
 }
 
 
-class WasRun { 
+class Prototype { 
     int wasRun;
 
-    WasRun() {
+    Prototype() {
         wasRun = 0;
     }
 
