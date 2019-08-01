@@ -7,8 +7,10 @@ class TestPrototype {
     }
 }
 
+
 class WasRun { 
     int wasRun;
+
     WasRun() {
         wasRun = 0;
     }
@@ -16,6 +18,5 @@ class WasRun {
     public void testMethod() {
         wasRun = 1;
     }
-
 }
         
