@@ -17,10 +17,7 @@ class Checker {
     Checker() { }
 
     public void isTrue(boolean arg) {
-        if (arg == true) {
-            System.out.println(1);
-        } else {
-            System.out.println(0);
-        }
+        int evaluation = arg ? 1 : 0;
+        System.out.println(evaluation);
     }
 }
