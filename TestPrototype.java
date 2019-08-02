@@ -1,7 +1,5 @@
 package JorUnit;
 
-import JorUnit.Checker;
-
 class TestPrototype {
     public static void main(String[] args) {
         testTestMethod();
