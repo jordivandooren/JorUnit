@@ -1,3 +1,7 @@
+package JorUnit;
+
+import JorUnit.Checker;
+
 class TestPrototype {
     public static void main(String[] args) {
         testPrototypeTestMethod();
@@ -5,9 +9,10 @@ class TestPrototype {
 
     static void testPrototypeTestMethod() {
         Prototype test = new Prototype();
-        System.out.println(test.wasRun);
+        Checker check = new Checker();
+        check.areEqual(0, test.wasRun);
         test.testMethod();
-        System.out.println(test.wasRun);
+        check.areEqual(1, test.wasRun);
     }
 }
 
