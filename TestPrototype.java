@@ -4,11 +4,11 @@ import JorUnit.Checker;
 
 class TestPrototype {
     public static void main(String[] args) {
-        testPrototypeTestMethod();
+        testTestMethod();
         testSetUp();
     }
 
-    static void testPrototypeTestMethod() {
+    static void testTestMethod() {
         Prototype test = new Prototype();
         Checker check = new Checker();
         check.areEqual(0, test.wasRun);
