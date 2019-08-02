@@ -1,7 +1,7 @@
 class TestChecker {
 
     public static void main(String[] args) {
-        testCheckTruth();
+        testTruth();
         testEquality();
     }
     
