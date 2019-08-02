@@ -15,6 +15,12 @@ class TestChecker {
         check.isTrue(false);
     }
 
+    public static void testFalse() {
+        Checker check = new Checker();
+        check.isFalse(false);
+        check.isFalse(true);
+    }
+
     public static void testEquality() {
         Checker check = new Checker();
         check.areEqual(1, 1);
