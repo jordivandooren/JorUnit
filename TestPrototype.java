@@ -5,43 +5,36 @@ import JorUnit.Checker;
 class TestPrototype {
     public static void main(String[] args) {
         testTestMethod();
-        testSetUp();
     }
 
     static void testTestMethod() {
         Prototype test = new Prototype();
-        Checker check = new Checker();
-        check.isFalse(test.wasRun);
         test.testMethod();
-        check.isTrue(test.wasRun);
-    }
-
-    static void testSetUp() {
-        Prototype test = new Prototype();
-        Checker check = new Checker();
-        check.isFalse(test.wasSetUp);
-        test.testMethod();
-        check.isTrue(test.wasSetUp);
+        boolean result = test.log.equals("setup method teardown");
+        System.out.println(result);
     }
 }
 
 
 class Prototype { 
-    boolean wasRun;
-    boolean wasSetUp;
+    String log;
 
     Prototype() {
-        wasSetUp = false;
-        wasRun = false;
+        log = "";
     }
 
     public void testMethod() {
         setUp();
-        wasRun = true;
+        log += " method";
+        tearDown();
     }
 
     void setUp() {
-        wasSetUp = true;
+        log += "setup";
+    }
+    
+    void tearDown() {
+        log += " teardown";
     }
 }
         
