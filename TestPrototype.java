@@ -11,37 +11,37 @@ class TestPrototype {
     static void testTestMethod() {
         Prototype test = new Prototype();
         Checker check = new Checker();
-        check.areEqual(0, test.wasRun);
+        check.isFalse(test.wasRun);
         test.testMethod();
-        check.areEqual(1, test.wasRun);
+        check.isTrue(test.wasRun);
     }
 
     static void testSetUp() {
         Prototype test = new Prototype();
         Checker check = new Checker();
-        check.areEqual(0, test.wasSetUp);
+        check.isFalse(test.wasSetUp);
         test.testMethod();
-        check.areEqual(1, test.wasSetUp);
+        check.isTrue(test.wasSetUp);
     }
 }
 
 
 class Prototype { 
-    int wasRun;
-    int wasSetUp;
+    boolean wasRun;
+    boolean wasSetUp;
 
     Prototype() {
-        wasSetUp = 0;
-        wasRun = 0;
+        wasSetUp = false;
+        wasRun = false;
     }
 
     public void testMethod() {
         setUp();
-        wasRun = 1;
+        wasRun = true;
     }
 
     void setUp() {
-        wasSetUp = 1;
+        wasSetUp = true;
     }
 }
         
