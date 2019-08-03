@@ -7,22 +7,21 @@ class TestPrototype {
 
     static void testTestMethod() {
         Prototype test = new Prototype();
-        test.testMethod();
+        test.run();
         assert test.log.equals("setup method teardown");
     }
 }
 
-
-class Prototype { 
+abstract class PrototypeTemplate {
     String log;
 
-    Prototype() {
+    PrototypeTemplate() {
         log = "";
     }
 
-    public void testMethod() {
+    public void run() {
         setUp();
-        log += " method";
+        testMethod();
         tearDown();
     }
 
@@ -30,8 +29,21 @@ class Prototype {
         log += "setup";
     }
     
+    abstract void testMethod(); 
+    
     void tearDown() {
         log += " teardown";
     }
 }
-        
+
+class Prototype extends PrototypeTemplate { 
+
+    Prototype() {
+        super();
+    }
+
+    void testMethod() {
+        log += " method";
+    }
+}
+
