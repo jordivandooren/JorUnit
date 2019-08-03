@@ -7,45 +7,32 @@ class TestPrototype {
 
     static void testTestMethod() {
         Prototype test = new Prototype();
-        test.run();
+        test.testMethod();
         boolean result = test.log.equals("setup method teardown");
         System.out.println(result);
     }
 }
 
 
-abstract class PrototypeTemplate {
+class Prototype { 
     String log;
 
-    PrototypeTemplate() {
+    Prototype() {
         log = "";
     }
 
-    public void run() {
+    public void testMethod() {
         setUp();
-        testMethod();
+        log += " method";
         tearDown();
     }
- 
+
     void setUp() {
         log += "setup";
     }
     
-    abstract void testMethod();
-
     void tearDown() {
         log += " teardown";
     }
 }
-    
-
-class Prototype extends PrototypeTemplate { 
-    
-    Prototype() {
-        super();
-    }
-
-    void testMethod() {
-        log += " method";
-    }
-}
+        
