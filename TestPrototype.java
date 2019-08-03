@@ -8,8 +8,7 @@ class TestPrototype {
     static void testTestMethod() {
         Prototype test = new Prototype();
         test.testMethod();
-        boolean result = test.log.equals("setup method teardown");
-        System.out.println(result);
+        assert test.log.equals("setup method teardown");
     }
 }
 
