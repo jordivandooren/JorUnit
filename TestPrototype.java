@@ -2,22 +2,51 @@ package JorUnit;
 
 class TestPrototype {
     public static void main(String[] args) {
-        testTestMethod();
-        testSummarize();
+        Test test1 = new TestTestMethod();
+        test1.run();
+        System.out.println(test1.summarize());
+        
+        Test test2 = new TestSummarize();
+        test2.run();
+        System.out.println(test2.summarize());
+    }
+}
+
+class TestTestMethod extends MetaTest {
+    TestTestMethod() { 
+        super();
     }
 
-    static void testTestMethod() {
-        Prototype test = new Prototype();
-        test.run();
+    void testMethod() { 
         assert test.log.equals("setup method teardown");
     }
+}
 
-    static void testSummarize() {
-        Prototype test = new Prototype();
-        test.run();
+class TestSummarize extends MetaTest {
+    TestSummarize() { 
+        super();
+    }
+
+    void testMethod() {
         assert test.summarize().equals("1 ran, 0 failed");
     }
 }
+
+abstract class MetaTest extends Test {
+    Prototype test;
+ 
+    MetaTest() {
+        super();
+    }
+
+    void setUp() {
+        test = new Prototype();
+        test.run();
+    }
+
+    void tearDown() {}
+} 
+
 
 abstract class Test {
     int runCount;
@@ -35,9 +64,8 @@ abstract class Test {
             testMethod();
         } catch(Exception e) {
             failCount += 1;
-        } finally {
-            tearDown();
         }
+        tearDown();
     }
 
     abstract void setUp();
@@ -69,7 +97,6 @@ abstract class PrototypeTemplate extends Test {
 }
 
 class Prototype extends PrototypeTemplate { 
-
     Prototype() {
         super();
     }
@@ -78,4 +105,3 @@ class Prototype extends PrototypeTemplate {
         log += " method";
     }
 }
-
