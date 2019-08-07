@@ -1,6 +1,7 @@
 package JorUnit;
 
 import JorUnit.Test;
+import JorUnit.TestResult;
 
 class TestPrototype {
     public static void main(String[] args) {
@@ -11,6 +12,10 @@ class TestPrototype {
         Test test2 = new TestSummarize();
         test2.run();
         System.out.println(test2.summarize());
+
+        Test test3 = new TestTestResult();
+        test3.run();
+        System.out.println(test3.summarize());
     }
 }
 
@@ -29,6 +34,23 @@ class TestSummarize extends MetaTest {
         assert test.summarize().equals("1 ran, 0 failed");
     }
 }
+
+class TestTestResult extends Test {
+    TestTestResult() {}
+    
+    void testMethod() {
+        TestResult result = new TestResult();
+        assert result.summarize().equals("0 ran, 0 failed");
+        result.testStarted();
+        assert result.summarize().equals("1 ran, 0 failed");
+        result.testFailed();
+        assert result.summarize().equals("1 ran, 0 failed");
+    }
+
+    void setUp() {}
+    void tearDown() {}
+}
+        
 
 abstract class MetaTest extends Test {
     Prototype test;
