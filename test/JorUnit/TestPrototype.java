@@ -13,6 +13,9 @@ class TestPrototype {
 
         Test test3 = new TestPassingTest();
         System.out.println(test3.run().summarize());
+        
+        Test test4 = new TestFailingTest();
+        System.out.println(test4.run().summarize());
     }
 }
 
@@ -38,6 +41,20 @@ class TestPassingTest extends Test {
         Test test = new Prototype();
         TestResult result = test.run();
         assert result.summarize().equals("1 ran, 0 failed");
+    }
+}
+
+class TestFailingTest extends Test {
+    void testMethod() {
+        Test test = new FailingTest();
+        TestResult result = test.run();
+        assert result.summarize().equals("1 ran, 1 failed");
+    }
+}
+
+class FailingTest extends Test {
+    void testMethod() {
+        assert false;
     }
 }
 

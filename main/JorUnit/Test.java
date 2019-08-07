@@ -7,6 +7,8 @@ abstract class Test {
         setUp();
         try {
             testMethod();
+        } catch(AssertionError ae) {
+            result.testFailed();
         } catch(Exception e) {
             result.testFailed();
         }
