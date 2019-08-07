@@ -1,8 +1,6 @@
 package JorUnit;
 
 abstract class Test {
-    Test() {}
-    
     public TestResult run() {
         TestResult result = new TestResult();
         result.testStarted();
