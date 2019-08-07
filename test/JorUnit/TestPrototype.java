@@ -10,6 +10,9 @@ class TestPrototype {
       
         Test test2 = new TestTestResult();
         System.out.println(test2.run().summarize());
+
+        Test test3 = new TestPassingTest();
+        System.out.println(test3.run().summarize());
     }
 }
 
@@ -29,7 +32,14 @@ class TestTestResult extends Test {
         assert result.summarize().equals("1 ran, 1 failed");
     }
 }
-        
+
+class TestPassingTest extends Test {
+    void testMethod() {
+        Test test = new Prototype();
+        TestResult result = test.run();
+        assert result.summarize().equals("1 ran, 0 failed");
+    }
+}
 
 abstract class MetaTest extends Test {
     Prototype test;
