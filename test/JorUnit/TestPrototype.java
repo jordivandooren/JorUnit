@@ -6,16 +6,10 @@ import JorUnit.TestResult;
 class TestPrototype {
     public static void main(String[] args) {
         Test test1 = new TestTestMethod();
-        test1.run();
-        System.out.println(test1.summarize());
-        
-        Test test2 = new TestSummarize();
-        test2.run();
-        System.out.println(test2.summarize());
-
-        Test test3 = new TestTestResult();
-        test3.run();
-        System.out.println(test3.summarize());
+        System.out.println(test1.run().summarize());
+      
+        Test test2 = new TestTestResult();
+        System.out.println(test2.run().summarize());
     }
 }
 
@@ -24,14 +18,6 @@ class TestTestMethod extends MetaTest {
 
     void testMethod() { 
         assert test.log.equals("setup method teardown");
-    }
-}
-
-class TestSummarize extends MetaTest {
-    TestSummarize() {}
-
-    void testMethod() {
-        assert test.summarize().equals("1 ran, 0 failed");
     }
 }
 
@@ -44,7 +30,7 @@ class TestTestResult extends Test {
         result.testStarted();
         assert result.summarize().equals("1 ran, 0 failed");
         result.testFailed();
-        assert result.summarize().equals("1 ran, 0 failed");
+        assert result.summarize().equals("1 ran, 1 failed");
     }
 
     void setUp() {}
