@@ -28,9 +28,6 @@ class TestTestResult extends Test {
         result.testFailed();
         assert result.summarize().equals("1 ran, 1 failed");
     }
-
-    void setUp() {}
-    void tearDown() {}
 }
         
 
@@ -40,8 +37,6 @@ abstract class MetaTest extends Test {
         test = new Prototype();
         test.run();
     }
-
-    void tearDown() {}
 } 
 
 // Log when setUp or tearDown is called.

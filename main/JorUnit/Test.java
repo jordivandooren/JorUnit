@@ -14,7 +14,7 @@ abstract class Test {
         return result;
     }
 
-    abstract void setUp();
+    void setUp() {};
     abstract void testMethod();
-    abstract void tearDown();
+    void tearDown() {};
 }
