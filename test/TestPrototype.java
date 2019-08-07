@@ -15,9 +15,7 @@ class TestPrototype {
 }
 
 class TestTestMethod extends MetaTest {
-    TestTestMethod() { 
-        super();
-    }
+    TestTestMethod() {}
 
     void testMethod() { 
         assert test.log.equals("setup method teardown");
@@ -25,9 +23,7 @@ class TestTestMethod extends MetaTest {
 }
 
 class TestSummarize extends MetaTest {
-    TestSummarize() { 
-        super();
-    }
+    TestSummarize() {}
 
     void testMethod() {
         assert test.summarize().equals("1 ran, 0 failed");
@@ -37,9 +33,7 @@ class TestSummarize extends MetaTest {
 abstract class MetaTest extends Test {
     Prototype test;
  
-    MetaTest() {
-        super();
-    }
+    MetaTest() {}
 
     void setUp() {
         test = new Prototype();
@@ -49,12 +43,11 @@ abstract class MetaTest extends Test {
     void tearDown() {}
 } 
 
-
+// Log when setUp or tearDown is called.
 abstract class PrototypeTemplate extends Test {
     String log;
 
     PrototypeTemplate() {
-        super();
         log = "";
     }
 
@@ -69,10 +62,9 @@ abstract class PrototypeTemplate extends Test {
     }
 }
 
+// The concrete class implements the a testMethod that logs.
 class Prototype extends PrototypeTemplate { 
-    Prototype() {
-        super();
-    }
+    Prototype() {}
 
     void testMethod() {
         log += " method";
