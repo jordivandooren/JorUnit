@@ -5,22 +5,25 @@ import JorUnit.TestResult;
 
 class TestPrototype {
     public static void main(String[] args) {
-        Test test1 = new TestTestMethod();
-        System.out.println(test1.run().summarize());
-      
-        Test test2 = new TestTestResult();
-        System.out.println(test2.run().summarize());
-
-        Test test3 = new TestPassingTest();
-        System.out.println(test3.run().summarize());
+        TestResult result = new TestResult();
+        TestSuite suite = new TestSuite();
         
-        Test test4 = new TestFailingTest();
-        System.out.println(test4.run().summarize());
+        suite.add(new TestTemplateMethod());
+        suite.add(new TestTestResult());
+        suite.add(new TestPassingTest());
+        suite.add(new TestFailingTest());
+        suite.add(new TestTestSuite());
+        
+        suite.run(result);
+        System.out.println(result.summarize());
     }
 }
 
-class TestTestMethod extends MetaTest {
+class TestTemplateMethod extends Test {
     void testMethod() { 
+        Prototype test = new Prototype();
+        TestResult result = new TestResult();
+        test.run(result);
         assert test.log.equals("setup method teardown");
     }
 }
@@ -39,7 +42,8 @@ class TestTestResult extends Test {
 class TestPassingTest extends Test {
     void testMethod() {
         Test test = new Prototype();
-        TestResult result = test.run();
+        TestResult result = new TestResult(); 
+        test.run(result);
         assert result.summarize().equals("1 ran, 0 failed");
     }
 }
@@ -47,8 +51,9 @@ class TestPassingTest extends Test {
 class TestFailingTest extends Test {
     void testMethod() {
         Test test = new FailingTest();
-        TestResult result = test.run();
-        assert result.summarize().equals("1 ran, 1 failed");
+        TestResult result = new TestResult(); 
+        test.run(result);
+        assert result.summarize().equals("1 ran, 1 failed");;
     }
 }
 
@@ -58,18 +63,21 @@ class FailingTest extends Test {
     }
 }
 
-abstract class MetaTest extends Test {
-    Prototype test;
-    void setUp() {
-        test = new Prototype();
-        test.run();
+class TestTestSuite extends Test {
+    void testMethod() {
+        TestSuite suite = new TestSuite();
+        suite.add(new Prototype());
+        suite.add(new FailingTest());
+        TestResult result = new TestResult();
+        suite.run(result);
+        assert result.summarize().equals("2 ran, 1 failed");
     }
-} 
+}
 
 // Log when setUp or tearDown is called.
 abstract class PrototypeTemplate extends Test {
-    String log;
-
+    public String log;
+    
     PrototypeTemplate() {
         log = "";
     }

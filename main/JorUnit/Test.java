@@ -1,8 +1,7 @@
 package JorUnit;
 
 abstract class Test {
-    public TestResult run() {
-        TestResult result = new TestResult();
+    public void run(TestResult result) {
         result.testStarted();
         setUp();
         try {
@@ -13,7 +12,6 @@ abstract class Test {
             result.testFailed();
         }
         tearDown();
-        return result;
     }
 
     void setUp() {};
