@@ -9,9 +9,8 @@ class TestPrototype {
         TestSuite suite = new TestSuite();
         
         suite.add(new TestTemplateMethod());
-        suite.add(new TestTestResult());
-        suite.add(new TestPassingTest());
-        suite.add(new TestFailingTest());
+        suite.add(new TestTestResultDirectly());
+        suite.add(new TestTestResultOfTests());
         suite.add(new TestTestSuite());
         
         suite.run(result);
@@ -28,7 +27,7 @@ class TestTemplateMethod extends Test {
     }
 }
 
-class TestTestResult extends Test {
+class TestTestResultDirectly extends Test {
     void testMethod() {
         TestResult result = new TestResult();
         assert result.summarize().equals("0 ran, 0 failed");
@@ -39,21 +38,17 @@ class TestTestResult extends Test {
     }
 }
 
-class TestPassingTest extends Test {
+class TestTestResultOfTests extends Test {
     void testMethod() {
-        Test test = new Prototype();
-        TestResult result = new TestResult(); 
-        test.run(result);
-        assert result.summarize().equals("1 ran, 0 failed");
-    }
-}
-
-class TestFailingTest extends Test {
-    void testMethod() {
-        Test test = new FailingTest();
-        TestResult result = new TestResult(); 
-        test.run(result);
-        assert result.summarize().equals("1 ran, 1 failed");;
+        Test test1 = new Prototype();
+        TestResult result1 = new TestResult(); 
+        test1.run(result1);
+        assert result1.summarize().equals("1 ran, 0 failed");
+        
+        Test test2 = new FailingTest();
+        TestResult result2 = new TestResult(); 
+        test2.run(result2);
+        assert result2.summarize().equals("1 ran, 1 failed");
     }
 }
 
@@ -76,12 +71,8 @@ class TestTestSuite extends Test {
 
 // Log when setUp or tearDown is called.
 abstract class PrototypeTemplate extends Test {
-    public String log;
+    public String log = "";
     
-    PrototypeTemplate() {
-        log = "";
-    }
-
     void setUp() {
         log += "setup";
     }
