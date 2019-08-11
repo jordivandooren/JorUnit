@@ -14,3 +14,5 @@ class Assert {
 interface ShouldRaise {
     public void shouldRaise() throws Throwable;
 }
+
+class AssertionException extends Exception {};
