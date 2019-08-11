@@ -12,6 +12,7 @@ class TestPrototype {
         suite.add(new TestTestResultDirectly());
         suite.add(new TestTestResultOfTests());
         suite.add(new TestTestSuite());
+        suite.add(new TestAssertRaises());
         
         suite.run(result);
         System.out.println(result.summarize());
@@ -69,6 +70,19 @@ class TestTestSuite extends Test {
     }
 }
 
+class TestAssertRaises extends Test {
+    void testMethod() {
+        ShouldRaise wrapper = new AssertWrapper();
+        assert Assert.raises(wrapper);
+    }
+}
+
+class AssertWrapper implements ShouldRaise {
+    public void shouldRaise() throws Throwable {
+        throw new Throwable();
+    }
+}
+    
 // Log when setUp or tearDown is called.
 abstract class PrototypeTemplate extends Test {
     public String log = "";
