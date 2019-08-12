@@ -79,15 +79,15 @@ class TestAssertRaises extends Test {
 }
 
 class AssertWrapper implements ShouldRaise {
-    public void shouldRaise() throws Throwable {
-        throw new Throwable();
+    public void shouldRaise() throws Exception {
+        throw new Exception();
     }
 }
 
 class TestAssertRaisesAssertionException extends Test {
     void testMethod() {
         ShouldRaise wrapper = new ShouldRaiseAssertionException();
-        assert Assert.raises(wrapper);
+        assert Assert.raisesAssertionException(wrapper);
     }
 }
 

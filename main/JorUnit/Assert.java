@@ -5,14 +5,25 @@ class Assert {
         try {
             arg.shouldRaise();
             return false;
-        } catch (Throwable e) {
+        } catch (Exception e) {
             return true;
+        }
+    }
+
+    public static boolean raisesAssertionException(ShouldRaise arg) {
+        try {
+            arg.shouldRaise();
+            return false;
+        } catch (AssertionException e) {
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }
 
 interface ShouldRaise {
-    public void shouldRaise() throws Throwable;
+    public void shouldRaise() throws Exception;
 }
 
 class AssertionException extends Exception {};
