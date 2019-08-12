@@ -22,60 +22,60 @@ class TestPrototype {
 }
 
 class TestTemplateMethod extends Test {
-    void testMethod() { 
+    void testMethod() throws AssertionException { 
         Prototype test = new Prototype();
         TestResult result = new TestResult();
         test.run(result);
-        assert test.log.equals("setup method teardown");
+        Assert.isTrue(test.log.equals("setup method teardown"));
     }
 }
 
 class TestTestResultDirectly extends Test {
-    void testMethod() {
+    void testMethod() throws AssertionException {
         TestResult result = new TestResult();
-        assert result.summarize().equals("0 ran, 0 failed");
+        Assert.isTrue(result.summarize().equals("0 ran, 0 failed"));
         result.testStarted();
-        assert result.summarize().equals("1 ran, 0 failed");
+        Assert.isTrue(result.summarize().equals("1 ran, 0 failed"));
         result.testFailed();
-        assert result.summarize().equals("1 ran, 1 failed");
+        Assert.isTrue(result.summarize().equals("1 ran, 1 failed"));
     }
 }
 
 class TestTestResultOfTests extends Test {
-    void testMethod() {
+    void testMethod() throws AssertionException {
         Test test1 = new Prototype();
         TestResult result1 = new TestResult(); 
         test1.run(result1);
-        assert result1.summarize().equals("1 ran, 0 failed");
+        Assert.isTrue(result1.summarize().equals("1 ran, 0 failed"));
         
         Test test2 = new FailingTest();
         TestResult result2 = new TestResult(); 
         test2.run(result2);
-        assert result2.summarize().equals("1 ran, 1 failed");
+        Assert.isTrue(result2.summarize().equals("1 ran, 1 failed"));
     }
 }
 
 class FailingTest extends Test {
-    void testMethod() {
-        assert false;
+    void testMethod() throws AssertionException {
+        Assert.isTrue(false);
     }
 }
 
 class TestTestSuite extends Test {
-    void testMethod() {
+    void testMethod() throws AssertionException {
         TestSuite suite = new TestSuite();
         suite.add(new Prototype());
         suite.add(new FailingTest());
         TestResult result = new TestResult();
         suite.run(result);
-        assert result.summarize().equals("2 ran, 1 failed");
+        Assert.isTrue(result.summarize().equals("2 ran, 1 failed"));
     }
 }
 
 class TestAssertRaises extends Test {
-    void testMethod() {
+    void testMethod() throws AssertionException {
         ShouldRaise wrapper = new AssertWrapper();
-        assert Assert.raises(wrapper);
+        Assert.isTrue(Assert.raises(wrapper));
     }
 }
 
@@ -86,9 +86,9 @@ class AssertWrapper implements ShouldRaise {
 }
 
 class TestAssertRaisesAssertionException extends Test {
-    void testMethod() {
+    void testMethod() throws AssertionException {
         ShouldRaise wrapper = new ShouldRaiseAssertionException();
-        assert Assert.raisesAssertionException(wrapper);
+        Assert.isTrue(Assert.raisesAssertionException(wrapper));
     }
 }
 
