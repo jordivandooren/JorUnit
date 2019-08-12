@@ -14,6 +14,7 @@ class TestPrototype {
         suite.add(new TestTestSuite());
         suite.add(new TestAssertRaises());
         suite.add(new TestAssertRaisesAssertionException());
+        suite.add(new TestAssertIsTrue());
 
         suite.run(result);
         System.out.println(result.summarize());
@@ -97,6 +98,11 @@ class ShouldRaiseAssertionException implements ShouldRaise {
     }
 }
 
+class TestAssertIsTrue extends Test {
+    public void testMethod() throws AssertionException {
+        Assert.isTrue(true);
+    }
+}
 
 // Log when setUp or tearDown is called.
 abstract class PrototypeTemplate extends Test {
@@ -113,7 +119,7 @@ abstract class PrototypeTemplate extends Test {
     }
 }
 
-// The concrete class implements the a testMethod that logs.
+// The concrete class implements a testMethod that logs.
 class Prototype extends PrototypeTemplate { 
     void testMethod() {
         log += " method";

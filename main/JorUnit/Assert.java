@@ -1,6 +1,12 @@
 package JorUnit;
 
 class Assert {
+    public static void isTrue(boolean arg) throws AssertionException { 
+        if (!arg) {
+            throw new AssertionException();
+        }
+    }
+
     public static boolean raises(ShouldRaise arg) {
         try {
             arg.shouldRaise();

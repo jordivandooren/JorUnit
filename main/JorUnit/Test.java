@@ -15,6 +15,6 @@ abstract class Test {
     }
 
     void setUp() {};
-    abstract void testMethod();
+    abstract void testMethod() throws AssertionException;
     void tearDown() {};
 }
