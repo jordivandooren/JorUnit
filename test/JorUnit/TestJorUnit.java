@@ -77,26 +77,26 @@ class TestAssertRaises extends Test {
         ShouldRaise wrapper = new AssertWrapper();
         Assert.isTrue(Assert.raises(wrapper));
     }
-}
-
-class AssertWrapper implements ShouldRaise {
-    public void shouldRaise() throws Exception {
-        throw new Exception();
+    class AssertWrapper implements ShouldRaise {
+        public void shouldRaise() throws Exception {
+            throw new Exception();
+        }
     }
 }
+
 
 class TestAssertRaisesAssertionException extends Test {
     void testMethod() throws AssertionException {
         ShouldRaise wrapper = new ShouldRaiseAssertionException();
         Assert.isTrue(Assert.raisesAssertionException(wrapper));
     }
-}
-
-class ShouldRaiseAssertionException implements ShouldRaise {
-    public void shouldRaise() throws AssertionException {
-        throw new AssertionException();
+    class ShouldRaiseAssertionException implements ShouldRaise {
+        public void shouldRaise() throws AssertionException {
+            throw new AssertionException();
+        }
     }
 }
+
 
 class TestAssertIsTrue extends Test {
     public void testMethod() throws AssertionException {
