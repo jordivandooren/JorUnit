@@ -3,7 +3,7 @@ package JorUnit;
 import JorUnit.Test;
 import JorUnit.TestResult;
 
-class TestPrototype {
+class TestJorUnit {
     public static void main(String[] args) {
         TestResult result = new TestResult();
         TestSuite suite = new TestSuite();
