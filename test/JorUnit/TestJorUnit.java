@@ -108,6 +108,14 @@ class TestAssertIsTrue extends Test {
 class TestAssertEqualStrings extends Test {
     public void testMethod() throws AssertionException {
         Assert.areEqual("ab", "ab");
+        ShouldRaise wrapper = new RaiseWrapper();
+        Assert.isTrue(Assert.raisesAssertionException(wrapper));
+    }
+
+    class RaiseWrapper implements ShouldRaise {
+        public void shouldRaise() throws Exception {
+            Assert.areEqual("ab", "ba");
+        }
     }
 }
 
