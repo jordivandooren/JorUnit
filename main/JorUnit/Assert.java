@@ -7,6 +7,10 @@ class Assert {
         }
     }
 
+    public static void areEqual(String arg1, String arg2) throws AssertionException {
+        isTrue(arg1.equals(arg2));
+    }
+
     public static boolean raises(ShouldRaise arg) {
         try {
             arg.shouldRaise();

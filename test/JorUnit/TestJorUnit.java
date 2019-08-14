@@ -15,6 +15,7 @@ class TestJorUnit {
         suite.add(new TestAssertRaises());
         suite.add(new TestAssertRaisesAssertionException());
         suite.add(new TestAssertIsTrue());
+        suite.add(new TestAssertEqualStrings());
 
         suite.run(result);
         System.out.println(result.summarize());
@@ -101,6 +102,12 @@ class TestAssertRaisesAssertionException extends Test {
 class TestAssertIsTrue extends Test {
     public void testMethod() throws AssertionException {
         Assert.isTrue(true);
+    }
+}
+
+class TestAssertEqualStrings extends Test {
+    public void testMethod() throws AssertionException {
+        Assert.areEqual("ab", "ab");
     }
 }
 
