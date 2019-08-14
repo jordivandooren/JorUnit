@@ -27,18 +27,18 @@ class TestTemplateMethod extends Test {
         Prototype test = new Prototype();
         TestResult result = new TestResult();
         test.run(result);
-        Assert.isTrue(test.log.equals("setup method teardown"));
+        Assert.areEqual(test.log, "setup method teardown");
     }
 }
 
 class TestTestResultDirectly extends Test {
     void testMethod() throws AssertionException {
         TestResult result = new TestResult();
-        Assert.isTrue(result.summarize().equals("0 ran, 0 failed"));
+        Assert.areEqual(result.summarize(), "0 ran, 0 failed");
         result.testStarted();
-        Assert.isTrue(result.summarize().equals("1 ran, 0 failed"));
+        Assert.areEqual(result.summarize(), "1 ran, 0 failed");
         result.testFailed();
-        Assert.isTrue(result.summarize().equals("1 ran, 1 failed"));
+        Assert.areEqual(result.summarize(), "1 ran, 1 failed");
     }
 }
 
@@ -47,12 +47,12 @@ class TestTestResultOfTests extends Test {
         Test test1 = new Prototype();
         TestResult result1 = new TestResult(); 
         test1.run(result1);
-        Assert.isTrue(result1.summarize().equals("1 ran, 0 failed"));
+        Assert.areEqual(result1.summarize(), "1 ran, 0 failed");
         
         Test test2 = new FailingTest();
         TestResult result2 = new TestResult(); 
         test2.run(result2);
-        Assert.isTrue(result2.summarize().equals("1 ran, 1 failed"));
+        Assert.areEqual(result2.summarize(), "1 ran, 1 failed");
     }
 }
 
@@ -69,7 +69,7 @@ class TestTestSuite extends Test {
         suite.add(new FailingTest());
         TestResult result = new TestResult();
         suite.run(result);
-        Assert.isTrue(result.summarize().equals("2 ran, 1 failed"));
+        Assert.areEqual(result.summarize(), "2 ran, 1 failed");
     }
 }
 
